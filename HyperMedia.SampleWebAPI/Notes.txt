@@ -1,0 +1,3 @@
+﻿
+Problem:InvalidOperationException: No public 'Invoke' method found.
+Cause:The controller method is sychronous, so we need to implement a sync Invoke
