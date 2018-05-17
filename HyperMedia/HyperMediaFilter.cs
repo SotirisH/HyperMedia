@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,12 +24,14 @@ namespace HyperMedia
         {
             if (context.Result is OkObjectResult okObjectResult)
             {
-                if (okObjectResult.Value is ISupportsHyperMedia model)
-                {
+                //if (okObjectResult.Value is ISupportsHyperMedia model)
+                //{
+                // Wee need change this logic to support collections
+                // Actually doesn't support
                     var enricher = _hyperMediaFilterOptions.ObjectContentResponseEnricherList.FirstOrDefault(x => x.CanEnrich(context));
                     if (enricher != null)
                         Task.FromResult(enricher.Enrich(context));
-                }
+                //}
             }
         }
     }
